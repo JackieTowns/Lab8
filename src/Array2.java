@@ -46,15 +46,13 @@ public class Array2 {
 
 		boolean isValid = true;
 		String choice = "y";
-		int index;
+		int index = -1;
 		
 		System.out.println("This is the Student Roster.");
 		System.out.println();
 		
 
 		while (choice.startsWith("y")) {
-			
-			// index = validate(names, scnr);
 
 			System.out.println("Which student would you like to learn more about?");
 			System.out.println();
@@ -64,11 +62,24 @@ public class Array2 {
 				System.out.println(i + 1 + ". " + names[i]);
 			}
 
-			index = scnr.nextInt() - 1;
+			 do {
+			 
+			  try { index = scnr.nextInt() - 1; 
+			  	isValid = true;
+			  }
+			  
+			   catch (Exception ex) { 
+				 scnr.nextLine();
+				 System.out.println("Not a number!! Enter a number 1-10:"); 
+				 isValid = false; 
+			  }
 
+			} while (!isValid);
+			 
 			while (index < 0 || index >= 10) {
-				System.out.println("Enter a valid number: (1-10)");
+				System.out.println("Enter a number (1-10):");
 				index = scnr.nextInt() - 1;
+			
 			}
 
 
@@ -133,37 +144,5 @@ public class Array2 {
 		
 	}
 
-	public static int validate(String[] names, Scanner scnr) {
-
-		int index;
-
-		System.out.println("Which student would you like to learn more about?");
-		System.out.println();
-
-		// show entire list of names
-		for (int i = 0; i < names.length; i++) {
-			System.out.println(i + 1 + ". " + names[i]);
-		}
-
-		index = scnr.nextInt() - 1;
-
-		// while (index < 0 || index >= 10) {
-		// System.out.println("Enter a valid number: (1-10)");
-		// index = scnr.nextInt() - 1;
-		// }
-
-		do {
-		try {
-
-			index = scnr.nextInt() - 1;
-
-		} catch (Exception ex) {
-			System.out.println("Not a number!!");
-			scnr.hasNext(); 
-			index = scnr.nextInt() - 1;
-
-		}
-		} while (index < 0 || index >= 10);
-		return index;
 	}
-}
+
